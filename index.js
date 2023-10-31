@@ -3,6 +3,8 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
 const server = express();
+const port=8080;
+const host="localhost";
 const getData=async (req, res) => {
     try {
       const fetchData = await axios.get("https://api.nytimes.com/svc/topstories/v2/home.json?api-key=kuuZy2gdWl6vOavIi0oWGAxEsTC4LZIS");
@@ -13,4 +15,4 @@ const getData=async (req, res) => {
   }
 server.use(cors())
 .get('/api/topStories',getData)
-.listen(process.env.PORT);
+.listen(process.env.PORT || port,process.env.HOST||host);
